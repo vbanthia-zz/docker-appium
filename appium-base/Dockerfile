@@ -27,7 +27,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     https://dl.google.com/android/android-sdk_r24.3.4-linux.tgz \
   && tar xzf /opt/adt.tgz -C /opt \
   && rm /opt/adt.tgz \
-  && echo y | /opt/android-sdk-linux/tools/android update sdk --filter platform-tools --no-ui --force \
+  && echo y | /opt/android-sdk-linux/tools/android update sdk --all --filter platform-tools,build-tools-23.0.1 --no-ui --force \
   && apt-get -qqy clean \
   && rm -rf /var/cache/apt/*
 
@@ -55,11 +55,12 @@ ENV APPIUM_VERSION 1.4.16
 
 RUN mkdir /opt/appium \
   && cd /opt/appium \
-  && npm install appium@$APPIUM_VERSION
+  && npm install appium@$APPIUM_VERSION \
+  && ln -s /opt/appium/node_modules/.bin/appium /usr/bin/appium
 
 EXPOSE 4723
 
 #==========================
 # Run appium as default
 #==========================
-CMD /opt/appium/node_modules/.bin/appium
+CMD /usr/bin/appium
