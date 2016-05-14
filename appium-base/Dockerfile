@@ -40,7 +40,7 @@ ENV ANDROID_HOME /opt/android-sdk-linux
 #==========================
 # Install Appium Dependencies
 #==========================
-RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - \
   && apt-get -qqy install \
     nodejs \
     python \
