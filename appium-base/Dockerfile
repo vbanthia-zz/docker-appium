@@ -51,7 +51,7 @@ RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash - \
 #=====================
 # Install Appium
 #=====================
-ENV APPIUM_VERSION 1.4.16
+ENV APPIUM_VERSION 1.5.2
 
 RUN mkdir /opt/appium \
   && cd /opt/appium \
