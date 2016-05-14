@@ -22,7 +22,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     wget \
     curl \
     unzip \
-    openjdk-7-jdk-headless \
+    openjdk-7-jdk \
   && wget --progress=dot:giga -O /opt/adt.tgz \
     https://dl.google.com/android/android-sdk_r24.3.4-linux.tgz \
   && tar xzf /opt/adt.tgz -C /opt \
