@@ -1,4 +1,4 @@
-FROM ubuntu:15.04
+FROM ubuntu:16.04
 MAINTAINER Vishal Banthia <vishal.banthia.vb@gmail.com>
 
 #=================================
@@ -27,7 +27,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     https://dl.google.com/android/android-sdk_r24.3.4-linux.tgz \
   && tar xzf /opt/adt.tgz -C /opt \
   && rm /opt/adt.tgz \
-  && echo y | /opt/android-sdk-linux/tools/android update sdk --all --filter platform-tools,build-tools-23.0.1 --no-ui --force \
+  && echo y | /opt/android-sdk-linux/tools/android update sdk --all --filter platform-tools,build-tools-23.0.3 --no-ui --force \
   && apt-get -qqy clean \
   && rm -rf /var/cache/apt/*
 
@@ -40,7 +40,7 @@ ENV ANDROID_HOME /opt/android-sdk-linux
 #==========================
 # Install Appium Dependencies
 #==========================
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
   && apt-get -qqy install \
     nodejs \
     python \
@@ -51,7 +51,7 @@ RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - \
 #=====================
 # Install Appium
 #=====================
-ENV APPIUM_VERSION 1.5.2
+ENV APPIUM_VERSION 1.5.3
 
 RUN mkdir /opt/appium \
   && cd /opt/appium \

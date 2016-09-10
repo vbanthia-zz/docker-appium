@@ -1,4 +1,4 @@
-FROM vbanthia/appium-base:1.5.2
+FROM vbanthia/appium-base:1.5.3
 MAINTAINER Vishal Banthia <vishal.banthia.vb@gmail.com>
 
 #======================================================
