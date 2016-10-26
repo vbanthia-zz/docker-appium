@@ -59,6 +59,7 @@ RUN mkdir /opt/appium \
   && ln -s /opt/appium/node_modules/.bin/appium /usr/bin/appium
 
 EXPOSE 4723
+EXPOSE 4724
 
 #==========================
 # Run appium as default
