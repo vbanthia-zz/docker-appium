@@ -1,8 +1,9 @@
 FROM vbanthia/appium-base:1.4.16
 MAINTAINER Vishal Banthia <vishal.banthia.vb@gmail.com>
 
-COPY stf_helper.sh stf_helper.sh
+RUN apt-get update && apt-get install jq
 
-source ./stf_helper
+COPY stf_helper /usr/local/bin/stf_helper
 
-CMD [ "./stf_helper.sh" ]
+
+CMD [ "stf_helper.sh" ]
