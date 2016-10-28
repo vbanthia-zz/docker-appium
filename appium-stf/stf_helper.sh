@@ -71,7 +71,11 @@ function remove_device
     echo "Device $DEVICE_SERIAL removed successfully"
 }
 
-add_device
-remote_connect
+function start_appium
+{
+    add_device
+    remote_connect
+    appium
+}
 
-appium
+$@
