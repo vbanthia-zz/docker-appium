@@ -1,1 +1,0 @@
-# Appium Ruby Onbuild Image

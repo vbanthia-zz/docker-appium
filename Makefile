@@ -1,5 +1,11 @@
-.PHONY: build-all
+.DEFAULT_GOAL := all
+
 TAG ?= 'latest'
+
+.PHONY: all
+all:
+	$(MAKE) build-all
+	$(MAKE) push-all
 
 .PHONY: build-base
 build-base:
@@ -9,16 +15,9 @@ build-base:
 build-ruby:
 	docker build -t vbanthia/appium-ruby:$(TAG) ./appium-ruby/
 
-.PHONY: build-ruby-onbuild
-build-ruby-onbuild:
-	docker build -t vbanthia/appium-ruby-onbuild:$(TAG) ./appium-ruby/onbuild/
-
 .PHONY: build-stf
 build-stf:
 	docker build -t vbanthia/appium-stf:$(TAG) ./appium-stf
-
-.PHONY: build-all
-build-all: build-base build-ruby build-ruby-onbuild build-stf
 
 .PHONY: push-base
 push-base:
@@ -28,13 +27,18 @@ push-base:
 push-ruby:
 	docker push vbanthia/appium-ruby:$(TAG)
 
-.PHONY: push-ruby-onbuild
-push-ruby-onbuild:
-	docker push vbanthia/appium-ruby-onbuild:$(TAG)
-
 .PHONY: push-stf
 push-stf:
 	docker push vbanthia/appium-stf:$(TAG)
 
+.PHONY: build-all
+build-all:
+	$(MAKE) build-base
+	$(MAKE) build-ruby
+	$(MAKE) build-stf
+
 .PHONY: push-all
-	push-all: push-base push-ruby push-ruby-onbuild push-stf
+push-all:
+	$(MAKE) push-base
+	$(MAKE) push-ruby
+	$(MAKE) push-stf
