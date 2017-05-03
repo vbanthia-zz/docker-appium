@@ -1,4 +1,4 @@
-FROM vbanthia/appium-base:1.4.16
+FROM vbanthia/appium-base:1.6.4
 MAINTAINER Vishal Banthia <vishal.banthia.vb@gmail.com>
 
 RUN apt-get update && apt-get install jq
