@@ -1,4 +1,4 @@
-FROM vbanthia/appium-ruby:1.5.3
+FROM vbanthia/appium-ruby:1.6.4
 MAINTAINER Vishal Banthia <vishal.banthia.vb@gmail.com>
 
 #==============================================================================

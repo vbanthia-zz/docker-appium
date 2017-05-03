@@ -1,4 +1,4 @@
-FROM vbanthia/appium-base:1.5.3
+FROM vbanthia/appium-base:1.6.4
 MAINTAINER Vishal Banthia <vishal.banthia.vb@gmail.com>
 
 #======================================================
@@ -52,10 +52,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # https://github.com/docker-library/ruby/blob/master/2.2/Dockerfile
 #=================================================================================
 
-ENV RUBY_MAJOR 2.3
-ENV RUBY_VERSION 2.3.1
-ENV RUBY_DOWNLOAD_SHA256 b87c738cb2032bf4920fef8e3864dc5cf8eae9d89d8d523ce0236945c5797dcd
-ENV RUBYGEMS_VERSION 2.6.4
+ENV RUBY_MAJOR 2.4
+ENV RUBY_VERSION 2.4.1
+ENV RUBY_DOWNLOAD_SHA256 4fc8a9992de3e90191de369270ea4b6c1b171b7941743614cc50822ddc1fe654
+ENV RUBYGEMS_VERSION 2.6.12
 
 RUN echo 'install: --no-document\nupdate: --no-document' >> "$HOME/.gemrc"
 

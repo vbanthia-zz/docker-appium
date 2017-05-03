@@ -4,8 +4,8 @@ MAINTAINER Vishal Banthia <vishal.banthia.vb@gmail.com>
 #=================================
 # Customize sources for apt-get
 #=================================
-RUN  echo "deb http://archive.ubuntu.com/ubuntu vivid main universe\n" > /etc/apt/sources.list \
-  && echo "deb http://archive.ubuntu.com/ubuntu vivid-updates main universe\n" >> /etc/apt/sources.list
+RUN  echo "deb http://archive.ubuntu.com/ubuntu xenial main universe\n" > /etc/apt/sources.list \
+  && echo "deb http://archive.ubuntu.com/ubuntu xenial-updates main universe\n" >> /etc/apt/sources.list
 
 #=============================================
 # Install Android SDK's and Platform tools
@@ -22,20 +22,23 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     wget \
     curl \
     unzip \
-    openjdk-7-jdk \
-  && wget --progress=dot:giga -O /opt/adt.tgz \
-    https://dl.google.com/android/android-sdk_r24.3.4-linux.tgz \
-  && tar xzf /opt/adt.tgz -C /opt \
-  && rm /opt/adt.tgz \
-  && echo y | /opt/android-sdk-linux/tools/android update sdk --all --filter platform-tools,build-tools-23.0.3 --no-ui --force \
+    openjdk-8-jdk \
+  && mkdir -p /opt/android-sdk \
+  && wget --progress=dot:giga -O /opt/android-sdk/sdk-tools.zip \
+    https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip \
+  && unzip /opt/android-sdk/sdk-tools.zip -d /opt/android-sdk \
+  && rm /opt/android-sdk/sdk-tools.zip
+
+RUN echo y | /opt/android-sdk/tools/bin/sdkmanager "platforms;android-25" "build-tools;25.0.3" "platform-tools" \
   && apt-get -qqy clean \
   && rm -rf /var/cache/apt/*
 
 #================================
 # Set up PATH for Android Tools
 #================================
-ENV PATH $PATH:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/tools
-ENV ANDROID_HOME /opt/android-sdk-linux
+
+ENV PATH $PATH:/opt/android-sdk/platform-tools:/opt/android-sdk/tools
+ENV ANDROID_HOME /opt/android-sdk
 
 #==========================
 # Install Appium Dependencies
@@ -51,7 +54,7 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
 #=====================
 # Install Appium
 #=====================
-ENV APPIUM_VERSION 1.5.3
+ENV APPIUM_VERSION 1.6.4
 
 RUN mkdir /opt/appium \
   && cd /opt/appium \
