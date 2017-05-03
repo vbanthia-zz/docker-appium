@@ -58,8 +58,12 @@ RUN mkdir /opt/appium \
   && npm install appium@$APPIUM_VERSION \
   && ln -s /opt/appium/node_modules/.bin/appium /usr/bin/appium
 
+#==================================================
+# Export Appium, Bootstrap and Chromedriver Ports
+#==================================================
 EXPOSE 4723
 EXPOSE 4724
+EXPOSE 9515
 
 #==========================
 # Run appium as default
