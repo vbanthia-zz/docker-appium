@@ -22,12 +22,19 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     wget \
     curl \
     unzip \
+    git \
     openjdk-8-jdk \
   && mkdir -p /opt/android-sdk \
   && wget --progress=dot:giga -O /opt/android-sdk/sdk-tools.zip \
     https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip \
   && unzip /opt/android-sdk/sdk-tools.zip -d /opt/android-sdk \
   && rm /opt/android-sdk/sdk-tools.zip
+
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+
+RUN mkdir -p -m 0750 /root/.android
+ADD files/insecure_shared_adbkey /root/.android/adbkey
+ADD files/insecure_shared_adbkey.pub /root/.android/adbkey.pub
 
 RUN echo y | /opt/android-sdk/tools/bin/sdkmanager "platforms;android-25" "build-tools;25.0.3" "platform-tools" \
   && apt-get -qqy clean \
