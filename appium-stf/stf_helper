@@ -38,6 +38,7 @@ function remote_connect
 {
     response=$(curl -X POST -H "Content-Type: application/json" \
                  -H "Authorization: Bearer $STF_TOKEN" \
+                 -H "Content-Length: 0" \
                 $STF_URL/api/v1/user/devices/$DEVICE_SERIAL/remoteConnect)
 
     success=$(echo "$response" | jq .success | tr -d '"')
