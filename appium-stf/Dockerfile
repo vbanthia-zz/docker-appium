@@ -1,4 +1,4 @@
-FROM vbanthia/appium-ruby:1.6.4
+FROM vbanthia/appium-ruby:1.7.2
 MAINTAINER Vishal Banthia <vishal.banthia.vb@gmail.com>
 
 RUN apt-get update && apt-get install -y jq
